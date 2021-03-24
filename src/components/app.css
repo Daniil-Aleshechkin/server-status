@@ -1,0 +1,10 @@
+.success-p {
+  background-color: #64b96d;
+}
+.success-s {
+  background-color: #b5dda4;
+}
+.card {
+  display: flex;
+  flex-direction: row;
+}
