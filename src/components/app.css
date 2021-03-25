@@ -8,3 +8,8 @@
   display: flex;
   flex-direction: row;
 }
+.register-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+}

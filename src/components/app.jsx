@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "./app.css";
+import ConfigBtns from "./configBtn";
+import Register from "./register";
 class App extends Component {
   state = {
     serverStatus: "running",
@@ -13,9 +15,13 @@ class App extends Component {
         <div className="card success-p h-100 ">
           <div className="card-body">
             <h1>Server status: running</h1>
-            <h2>ip: {this.state.serverIp}</h2>
+            <h2>Ip: {this.state.serverIp}</h2>
+            <h3>Player online: {this.state.serverPlayers}</h3>
+            <ConfigBtns />
           </div>
-          <div className="card-body">Server Status: running</div>
+          <div className="register-container">
+            <Register />
+          </div>
         </div>
       </div>
     );
