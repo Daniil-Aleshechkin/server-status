@@ -3,6 +3,7 @@
 }
 .success-s {
   background-color: #b5dda4;
+  color: #205e3b;
 }
 .card {
   display: flex;
@@ -11,5 +12,27 @@
 .register-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 2em;
+}
+.register-container > * {
+  margin: 2em;
+}
+.register-container > div {
+  margin-top: auto;
+}
+.status-icon {
+  width: 10em !important;
+  height: 10em !important;
+  color: white !important;
+  border: white solid 10px;
+  padding: 1em;
+  border-radius: 50%;
+}
+.login-btns {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.login-btns > * {
+  margin: 1em;
 }

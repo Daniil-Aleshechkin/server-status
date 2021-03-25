@@ -1,31 +1,24 @@
-.register {
+.login {
   border: #decdf5 3px solid;
   display: flex;
   flex-direction: column;
   margin-top: auto;
 }
-.register > * {
-  margin: 1em;
+.login > * {
+  margin: 0.5em;
   color: black;
 }
-.register > div > p {
+.login > div > p {
   margin-right: 1em;
   margin-bottom: 0;
 }
-.register > div > input {
+.login > div > input {
   margin-left: auto;
 }
-.register > div {
+.login > div {
   display: flex;
   align-items: center;
 }
 .btn {
   color: white;
-}
-.login-btns {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-.login-btns > * {
-  margin: 1em;
 }

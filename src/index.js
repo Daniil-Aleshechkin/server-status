@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { icons } from "./icons";
 import "./index.css";
 import "bootstrap/dist/css/bootstrap.css";
 import App from "./components/app";
+
+React.icons = icons;
 
 ReactDOM.render(
   <React.StrictMode>
