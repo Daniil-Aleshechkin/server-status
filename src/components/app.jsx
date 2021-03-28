@@ -16,8 +16,38 @@ class App extends Component {
     this.configBtnOperations.onRefresh();
   }
   configBtnOperations = {
-    onStop: () => {},
-    onStart: () => {},
+    onStop: () => {
+      axios
+        .post(
+          "server/stop",
+          {},
+          { headers: { Authorization: `Token ${this.state.token}` } }
+        )
+        .then((response) => {
+          if (response.data.status === "Instance should now be stopping") {
+            this.setState({ serverStatus: "stopping" });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    onStart: () => {
+      axios
+        .post(
+          "server/start",
+          {},
+          { headers: { Authorization: `Token ${this.state.token}` } }
+        )
+        .then((response) => {
+          if (response.data.status === "Instance should now be pending") {
+            this.setState({ serverStatus: "pending" });
+          }
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
     onLogout: () => {
       this.setState({ token: null, is_admin: false, username: null });
     },
@@ -90,8 +120,10 @@ class App extends Component {
     }
   };
   renderPlayers = () => {
-    if (this.state.serverPlayers) {
+    if (this.state.serverPlayers || this.state.serverPlayers === 0) {
       return <h3>Players online: {this.state.serverPlayers}</h3>;
+    } else if (this.state.serverStatus === "running") {
+      return <h3>Minecraft server starting...</h3>;
     } else {
       return;
     }
@@ -149,7 +181,12 @@ class App extends Component {
             {this.renderIp()}
             {this.renderPlayers()}
 
-            <ConfigBtns key="iofsonifs" permission={this.state.is_admin} />
+            <ConfigBtns
+              key="iofsonifs"
+              permission={this.state.is_admin}
+              serverStatus={this.state.serverStatus}
+              configBtnOperations={this.configBtnOperations}
+            />
             {this.renderWelcome()}
           </div>
 

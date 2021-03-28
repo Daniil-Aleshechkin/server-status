@@ -22,10 +22,3 @@
 .btn {
   color: white;
 }
-.login-btns {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-.login-btns > * {
-  margin: 1em;
-}

@@ -40,3 +40,8 @@
 .login-btns > * {
   margin: 1em;
 }
+@media screen and (max-height: 768px) {
+  .register-container {
+    flex-direction: row !important;
+  }
+}

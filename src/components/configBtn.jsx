@@ -2,13 +2,25 @@ import React from "react";
 import CIcon from "@coreui/icons-react";
 import "./configBtn.css";
 
-const ConfigBtns = ({ permission }) => {
+const ConfigBtns = ({ permission, serverStatus, configBtnOperations }) => {
   function renderPermissions() {
     if (permission) {
       return (
         <React.Fragment>
-          <button className="btn btn-primary">Stop</button>
-          <button className="btn btn-primary">Start</button>
+          <button
+            disabled={serverStatus !== "running"}
+            onClick={configBtnOperations.onStop}
+            className="btn btn-primary"
+          >
+            Stop
+          </button>
+          <button
+            disabled={serverStatus !== "stopped"}
+            onClick={configBtnOperations.onStart}
+            className="btn btn-primary"
+          >
+            Start
+          </button>
         </React.Fragment>
       );
     } else {
@@ -19,7 +31,10 @@ const ConfigBtns = ({ permission }) => {
   return (
     <div className="config-btns">
       {renderPermissions()}
-      <button className="btn btn-primary">
+      <button
+        onClick={configBtnOperations.onRefresh}
+        className="btn btn-primary"
+      >
         <CIcon name="cil-loop-circular" />
       </button>
     </div>
