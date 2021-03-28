@@ -5,6 +5,13 @@
   background-color: #b5dda4;
   color: #205e3b;
 }
+.danger-p {
+  background-color: #d91e36;
+}
+.danger-s {
+  background-color: #ec5766;
+  color: #5d1212;
+}
 .card {
   display: flex;
   flex-direction: row;
@@ -22,12 +29,9 @@
   margin-top: auto;
 }
 .status-icon {
-  width: 10em !important;
-  height: 10em !important;
+  width: 15em !important;
+  height: 15em !important;
   color: white !important;
-  border: white solid 10px;
-  padding: 1em;
-  border-radius: 50%;
 }
 .login-btns {
   display: grid;

@@ -125,10 +125,24 @@ class App extends Component {
       );
     }
   };
+  renderTheme = () => {
+    if (this.state.serverStatus === "running") {
+      return "success";
+    } else {
+      return "danger";
+    }
+  };
+  renderIcon = () => {
+    if (this.state.serverStatus === "running") {
+      return "Check";
+    } else {
+      return "Warning";
+    }
+  };
   render() {
     return (
-      <div className="success-p p-4 h-100">
-        <div className="card success-s h-100 ">
+      <div className={this.renderTheme() + "-p p-4 h-100"}>
+        <div className={this.renderTheme() + "-s card h-100 "}>
           <div className="d-flex flex-column card-body">
             <h1>Server status: {this.state.serverStatus}</h1>
             <h2>Uptime: {this.state.hours} hours</h2>
@@ -140,7 +154,7 @@ class App extends Component {
           </div>
 
           <div className="register-container">
-            <CIcon className="status-icon" name="cilCheck" />
+            <CIcon className="status-icon" name={"cil" + this.renderIcon()} />
             <div>{this.renderRegister()}</div>
           </div>
         </div>
