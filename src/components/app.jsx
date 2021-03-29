@@ -11,6 +11,7 @@ class App extends Component {
     token: null,
     username: null,
     is_admin: false,
+    alerts: [],
   };
   componentDidMount() {
     this.configBtnOperations.onRefresh();
@@ -89,19 +90,27 @@ class App extends Component {
             });
         })
         .catch((e) => {
-          console.log(e);
+          var alerts = [];
+          Object.keys(e.response.data).forEach((key) => {
+            e.response.data[key].forEach((error) => {
+              alerts.push(`${key}: ${error}`);
+            });
+          });
+          this.setState({ alerts });
         });
     },
   };
   onLoginPageLoad = () => {
-    this.setState({ loginPage: true });
+    this.setState({ loginPage: true, alerts: [] });
   };
   onRegisterPageLoad = () => {
-    this.setState({ loginPage: false });
+    this.setState({ loginPage: false, alerts: [] });
   };
   renderAccountPage = () => {
     if (this.state.loginPage) {
-      return <Login onLogin={this.userControls.onLogin} />;
+      return (
+        <Login onLogin={this.userControls.onLogin} alerts={this.state.alerts} />
+      );
     }
     return <Register />;
   };
