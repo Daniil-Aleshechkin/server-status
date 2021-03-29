@@ -99,6 +99,38 @@ class App extends Component {
           this.setState({ alerts });
         });
     },
+    onRegister: () => {
+      let username = document.getElementById("register-username").value;
+      let email = document.getElementById("register-email").value;
+      let password = document.getElementById("register-password").value;
+      let confirmPassword = document.getElementById("register-confirmpassword")
+        .value;
+
+      axios
+        .post("account/api/register/", {
+          username,
+          email,
+          password,
+          confirmPassword,
+        })
+        .then((response) => {
+          this.setState({
+            token: response.data.token,
+            is_staff: false,
+            username: response.data.username,
+          });
+        })
+        .catch((e) => {
+          console.log(e);
+          var alerts = [];
+          Object.keys(e.response.data).forEach((key) => {
+            e.response.data[key].forEach((error) => {
+              alerts.push(`${key}: ${error}`);
+            });
+          });
+          this.setState({ alerts });
+        });
+    },
   };
   onLoginPageLoad = () => {
     this.setState({ loginPage: true, alerts: [] });
@@ -112,7 +144,12 @@ class App extends Component {
         <Login onLogin={this.userControls.onLogin} alerts={this.state.alerts} />
       );
     }
-    return <Register />;
+    return (
+      <Register
+        onRegister={this.userControls.onRegister}
+        alerts={this.state.alerts}
+      />
+    );
   };
   renderWelcome = () => {
     if (this.state.username) {
